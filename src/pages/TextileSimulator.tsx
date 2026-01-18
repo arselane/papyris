@@ -8,49 +8,7 @@ import { Slider } from "@/components/ui/slider";
 import { Download, Upload, Shirt, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import OptimizedImage from "@/components/OptimizedImage";
-
-// Import t-shirt images
-import tshirtFrontWhite from "@/assets/textiles/tshirt-white-front.png";
-import tshirtFrontBlack from "@/assets/textiles/tshirt-black-front.png";
-import tshirtFrontGreen from "@/assets/textiles/tshirt-green-front.png";
-import tshirtFrontRed from "@/assets/textiles/tshirt-red-front.png";
-import tshirtFrontBlue from "@/assets/textiles/tshirt-blue-front.png";
-import tshirtBackWhite from "@/assets/textiles/tshirt-white-back.png";
-import tshirtBackBlack from "@/assets/textiles/tshirt-black-back.png";
-import tshirtBackGreen from "@/assets/textiles/tshirt-green-back.png";
-import tshirtBackRed from "@/assets/textiles/tshirt-red-back.png";
-import tshirtBackBlue from "@/assets/textiles/tshirt-blue-back.png";
-
-// Import polo images
-import poloFrontWhite from "@/assets/textiles/polo-white-front.png";
-import poloFrontBlack from "@/assets/textiles/polo-black-front.png";
-import poloFrontGreen from "@/assets/textiles/polo-green-front.png";
-import poloFrontRed from "@/assets/textiles/polo-red-front.png";
-import poloFrontBlue from "@/assets/textiles/polo-blue-front.png";
-import poloBackWhite from "@/assets/textiles/polo-white-back.png";
-import poloBackBlack from "@/assets/textiles/polo-black-back.png";
-import poloBackGreen from "@/assets/textiles/polo-green-back.png";
-import poloBackRed from "@/assets/textiles/polo-red-back.png";
-import poloBackBlue from "@/assets/textiles/polo-blue-back.png";
-
-// Import sweat images
-import sweatFrontWhite from "@/assets/textiles/sweat-white-front.png";
-import sweatFrontBlack from "@/assets/textiles/sweat-black-front.png";
-import sweatFrontGreen from "@/assets/textiles/sweat-green-front.png";
-import sweatFrontRed from "@/assets/textiles/sweat-red-front.png";
-import sweatFrontBlue from "@/assets/textiles/sweat-blue-front.png";
-import sweatBackWhite from "@/assets/textiles/sweat-white-back.png";
-import sweatBackBlack from "@/assets/textiles/sweat-black-back.png";
-import sweatBackGreen from "@/assets/textiles/sweat-green-back.png";
-import sweatBackRed from "@/assets/textiles/sweat-red-back.png";
-import sweatBackBlue from "@/assets/textiles/sweat-blue-back.png";
-
-// Import cap images (une seule vue)
-import capWhite from "@/assets/textiles/cap-white.png";
-import capBlack from "@/assets/textiles/cap-black.png";
-import capGreen from "@/assets/textiles/cap-green.png";
-import capRed from "@/assets/textiles/cap-red.png";
-import capBlue from "@/assets/textiles/cap-blue.png";
+import { textileImages } from "@/data/textileImages";
 
 export default function TextileSimulator() {
   const [product, setProduct] = useState<"tshirt" | "sweat" | "polo" | "cap">("tshirt");
@@ -238,29 +196,13 @@ export default function TextileSimulator() {
     const colorName = colors.find(c => c.value === productColor)?.name || productColor;
 
     if (product === "tshirt") {
-      const tshirtImages = {
-        front: {
-          white: tshirtFrontWhite,
-          black: tshirtFrontBlack,
-          green: tshirtFrontGreen,
-          red: tshirtFrontRed,
-          blue: tshirtFrontBlue,
-        },
-        back: {
-          white: tshirtBackWhite,
-          black: tshirtBackBlack,
-          green: tshirtBackGreen,
-          red: tshirtBackRed,
-          blue: tshirtBackBlue,
-        },
-      };
-
-      const currentImage = tshirtImages[view][productColor];
+      const images = textileImages.tshirt[view][productColor];
       
       return (
         <div style={{ position: "relative", width: "100%", maxWidth: "450px" }}>
           <OptimizedImage
-            src={currentImage}
+            src={images.png}
+            srcWebp={images.webp}
             alt={`T-shirt ${colorName} - ${view === "front" ? "avant" : "arrière"}`}
             style={{
               width: "100%",
@@ -273,29 +215,13 @@ export default function TextileSimulator() {
     }
 
     if (product === "polo") {
-      const poloImages = {
-        front: {
-          white: poloFrontWhite,
-          black: poloFrontBlack,
-          green: poloFrontGreen,
-          red: poloFrontRed,
-          blue: poloFrontBlue,
-        },
-        back: {
-          white: poloBackWhite,
-          black: poloBackBlack,
-          green: poloBackGreen,
-          red: poloBackRed,
-          blue: poloBackBlue,
-        },
-      };
-
-      const currentImage = poloImages[view][productColor];
+      const images = textileImages.polo[view][productColor];
       
       return (
         <div style={{ position: "relative", width: "100%", maxWidth: "450px" }}>
-          <img
-            src={currentImage}
+          <OptimizedImage
+            src={images.png}
+            srcWebp={images.webp}
             alt={`Polo ${colorName} - ${view === "front" ? "avant" : "arrière"}`}
             style={{
               width: "95%",
@@ -309,20 +235,13 @@ export default function TextileSimulator() {
     }
 
     if (product === "cap") {
-      const capImages = {
-        white: capWhite,
-        black: capBlack,
-        green: capGreen,
-        red: capRed,
-        blue: capBlue,
-      };
-
-      const currentImage = capImages[productColor];
+      const images = textileImages.cap[productColor];
       
       return (
         <div style={{ position: "relative", width: "100%", maxWidth: "450px" }}>
           <OptimizedImage
-            src={currentImage}
+            src={images.png}
+            srcWebp={images.webp}
             alt={`Casquette ${colorName}`}
             style={{
               width: "100%",
@@ -336,29 +255,13 @@ export default function TextileSimulator() {
     
     // Sweat
     if (product === "sweat") {
-      const sweatImages = {
-        front: {
-          white: sweatFrontWhite,
-          black: sweatFrontBlack,
-          green: sweatFrontGreen,
-          red: sweatFrontRed,
-          blue: sweatFrontBlue,
-        },
-        back: {
-          white: sweatBackWhite,
-          black: sweatBackBlack,
-          green: sweatBackGreen,
-          red: sweatBackRed,
-          blue: sweatBackBlue,
-        },
-      };
-
-      const currentImage = sweatImages[view][productColor];
+      const images = textileImages.sweat[view][productColor];
       
       return (
         <div style={{ position: "relative", width: "100%", maxWidth: "450px" }}>
           <OptimizedImage
-            src={currentImage}
+            src={images.png}
+            srcWebp={images.webp}
             alt={`Sweat ${colorName} - ${view === "front" ? "avant" : "arrière"}`}
             style={{
               width: "100%",

@@ -1,14 +1,13 @@
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
+  srcWebp?: string;
   alt: string;
 }
 
-const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, ...props }) => {
-  const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-  
+const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, srcWebp, alt, ...props }) => {
   return (
     <picture>
-      <source srcSet={webpSrc} type="image/webp" />
+      {srcWebp && <source srcSet={srcWebp} type="image/webp" />}
       <img src={src} alt={alt} {...props} />
     </picture>
   );

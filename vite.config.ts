@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "/",
   server: {
     host: "::",
     port: 8080,
@@ -31,7 +32,7 @@ export default defineConfig(({ mode }) => ({
           'lucide': ['lucide-react'],
         },
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split('.');
+          const info = assetInfo.name?.split('.') || [];
           const ext = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
