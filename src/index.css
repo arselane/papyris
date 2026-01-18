@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Performance: Preload critical fonts */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 190 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 320 100% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 280 100% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom neon colors */
+    --neon-cyan: 190 100% 50%;
+    --neon-pink: 320 100% 60%;
+    --neon-gold: 39 97% 60%;
+    --neon-purple: 280 100% 65%;
+    --neon-blue: 220 100% 60%;
+    
+    /* Glow effects */
+    --glow-cyan: 0 0 20px hsl(190 100% 50% / 0.5), 0 0 40px hsl(190 100% 50% / 0.3), 0 0 60px hsl(190 100% 50% / 0.1);
+    --glow-pink: 0 0 20px hsl(320 100% 60% / 0.5), 0 0 40px hsl(320 100% 60% / 0.3), 0 0 60px hsl(320 100% 60% / 0.1);
+    --glow-gold: 0 0 20px hsl(39 97% 60% / 0.5), 0 0 40px hsl(39 97% 60% / 0.3), 0 0 60px hsl(39 97% 60% / 0.1);
+    --glow-purple: 0 0 20px hsl(280 100% 65% / 0.5), 0 0 40px hsl(280 100% 65% / 0.3);
+
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-gold)), hsl(var(--neon-pink)));
+    --gradient-dark: linear-gradient(180deg, hsl(222 47% 6%), hsl(222 47% 4%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 6%));
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 190 100% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer utilities {
+  .text-glow-cyan {
+    text-shadow: 0 0 10px hsl(190 100% 50% / 0.8), 0 0 20px hsl(190 100% 50% / 0.5), 0 0 40px hsl(190 100% 50% / 0.3);
+  }
+
+  .text-glow-pink {
+    text-shadow: 0 0 10px hsl(320 100% 60% / 0.8), 0 0 20px hsl(320 100% 60% / 0.5), 0 0 40px hsl(320 100% 60% / 0.3);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 10px hsl(39 97% 60% / 0.8), 0 0 20px hsl(39 97% 60% / 0.5), 0 0 40px hsl(39 97% 60% / 0.3);
+  }
+
+  .box-glow-cyan {
+    box-shadow: 0 0 20px hsl(190 100% 50% / 0.4), 0 0 40px hsl(190 100% 50% / 0.2), inset 0 0 20px hsl(190 100% 50% / 0.1);
+  }
+
+  .box-glow-pink {
+    box-shadow: 0 0 20px hsl(320 100% 60% / 0.4), 0 0 40px hsl(320 100% 60% / 0.2), inset 0 0 20px hsl(320 100% 60% / 0.1);
+  }
+
+  .box-glow-gold {
+    box-shadow: 0 0 20px hsl(39 97% 60% / 0.4), 0 0 40px hsl(39 97% 60% / 0.2), inset 0 0 20px hsl(39 97% 60% / 0.1);
+  }
+
+  .border-glow {
+    border: 1px solid hsl(190 100% 50% / 0.5);
+    box-shadow: 0 0 15px hsl(190 100% 50% / 0.3), inset 0 0 15px hsl(190 100% 50% / 0.1);
+  }
+
+  .border-glow-gold {
+    border: 1px solid hsl(39 97% 60% / 0.5);
+    box-shadow: 0 0 15px hsl(39 97% 60% / 0.3), inset 0 0 15px hsl(39 97% 60% / 0.1);
+  }
+
+  .neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(190 100% 50%), hsl(39 97% 60%), hsl(320 100% 60%), transparent);
+    box-shadow: 0 0 10px hsl(39 97% 60% / 0.5);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(190 100% 50%), hsl(39 97% 60%), hsl(320 100% 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
